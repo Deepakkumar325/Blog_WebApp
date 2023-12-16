@@ -1,0 +1,53 @@
+<%- include('layout/header') %>
+<style>
+    img{
+        width: 250px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100px;
+
+    }
+</style>
+<div class="container">
+    <div class="row my-4">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <% if(users.length > 0) { %>
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Blog Posts</h5>
+                        </div>
+                        <div class="card-body">
+                            <% users.forEach((post, index) => { %>
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-md-2">
+                                            <img src="<%= post.image %>" class="img-fluid rounded-start"   alt="Blog Image">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><%= post.name %></h5>
+                                                <p class="card-text"><strong>Email:</strong> <%= post.email %></p>
+                                                <p class="card-text"><strong>About:</strong> <%= post.phone %> (Change this with your actual content)</p>
+                                                <a href='/edit/<%= post._id %>' class="btn btn-success me-2">Edit</a>
+                                                <a href="/delete/<%= post._id %>" class="btn btn-danger">Delete</a>
+                                                <a href="/post/<%= post._id %>" class="btn btn-primary">View</a>
+
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <h1 class="text-center text-secondary mt-5">No blog posts available.</h1>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer') %>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css"> <!-- Add this line for navbar styles -->
+<title>File Share</title>    
+</head>
+<style>
+    .logo img{
+        width: 100px;
+
+    }
+</style>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/1037/1037325.png"  alt="Logo">
+        </div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        
+    </nav>
+
+    <!-- File Upload Form -->
+    <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+        <label for="file">File: </label>
+        <input type="file" name="file" id="file" required />
+
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password">
+
+        <button type="submit">Share</button>
+    </form>
+
+    <!-- File Upload Message -->
+    <% if (locals.fileLink != null) { %>
+
+        <div class="message">
+            <center> 
+                <h3>File Uploaded SuccesFully </h3>
+            <div class="file-uploaded">
+                Click Link to Download File !
+            </div>
+            <div class="file-link">
+                 <a href="<%= locals.fileLink %>">
+                    <%= locals.fileLink %>
+                </a> </center>
+                
+            </div>
+        </div>
+    <% } %>
+
+</body>
+</html>

@@ -10,7 +10,10 @@ const methodOverride = require('method-override');
 
 
 // mongodb connection
-mongoose.connect(process.env.DB_URL)
+mongoose.connect(process.env.DB_URL,
+    {useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000})
 .then(()=>console.log("DB connect "))
 .catch(()=>{console.log("Failed to connect")})
    
@@ -20,6 +23,8 @@ const views = path.join(__dirname,'views');
 app.set("views",views);
 app.set('view engine','ejs');
 app.use(express.static('public'))
+app.set('view engine', 'ejs');
+app.set('views', '/opt/render/project/src/views');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 // /middleware

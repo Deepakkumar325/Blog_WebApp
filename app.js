@@ -19,21 +19,25 @@ mongoose.connect(process.env.DB_URL,
    
 
 
-
-// Require static assets from public folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Set 'views' directory for any views 
-// being rendered res.render()
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.set('views', '/opt/render/project/src/views');
 
 // Set view engine as EJS
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Middleware to handle form data
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+
+// Example route to handle a 404 error
+app.use((req, res) => {
+    res.status(404).render('404'); // Assuming you have a '404' view
+  });
+
+  // Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render('error'); // Assuming you have an 'error' view
+  });
 
 // /middleware
 app.use(express.static('uploads'))

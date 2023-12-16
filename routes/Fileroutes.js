@@ -48,8 +48,8 @@ async function handleDownload(req, res) {
 
     res.download(file.path, file.originalName);
 }
-
-router.route("/file/:id").get(handleDownload).post(handleDownload);
+router.get("/file/:id", handleDownload);
+router.post("/file/:id", handleDownload);
 
 
 

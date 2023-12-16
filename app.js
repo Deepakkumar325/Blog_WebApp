@@ -18,15 +18,23 @@ mongoose.connect(process.env.DB_URL,
 .catch(()=>{console.log("Failed to connect")})
    
 
-// file views set
-const views = path.join(__dirname,'views');
-app.set("views",views);
-app.set('view engine','ejs');
-app.use(express.static('public'))
+
+
+// Require static assets from public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set 'views' directory for any views 
+// being rendered res.render()
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('views', '/opt/render/project/src/views');
+
+// Set view engine as EJS
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
+
 // /middleware
 app.use(express.static('uploads'))
 app.use(methodOverride('_method'))

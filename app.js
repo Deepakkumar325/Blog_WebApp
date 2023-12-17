@@ -14,7 +14,7 @@ mongoose.connect(process.env.DB_URL , {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   
-}).then(()=> console.log("DB Connected")).catch(( )=> console.log("Not Connected"));
+}).then(()=> console.log("DB Connected")).catch((err)=> console.log("Not Connected",err));
 
 
 // file views set

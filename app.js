@@ -11,7 +11,7 @@ const methodOverride = require('method-override');
 
 // mongodb connection
 mongoose.connect(process.env.DB_URL , {
-  useNewUrlParser: true,
+  useNewUrlParser: true, 
   useUnifiedTopology: true,
   
 }).then(()=> console.log("DB Connected")).catch(( )=> console.log("Not Connected"));
@@ -35,7 +35,7 @@ app.get('/about',(req,res)=>{
 
 // body-parser , middleware 
 app.use(express.urlencoded({ extended: true })); //for form data
-
+  
 app.use(express.json());
 
 app.use(routes);

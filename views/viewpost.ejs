@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css">
-    <title><%= post.name %></title>
+    <title><%= users.name %></title>
 </head>
 
 <body>
@@ -18,15 +18,16 @@
             </div>
             <div class="card-body">
                 <div class="row g-0">
-                    <div class="col-md-3">
-                        <img src="<%= post.image %>" class="img-thumbnail rounded-start"   alt="Blog Image">
+                    <div class="col-md-12">
+                        <img src="/<%= users.image %>" class="img-thumbnail rounded-start"   alt="Blog Image">
 
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <h5 class="card-title"><%= post.name %></h5>
-                            <p class="card-text"><strong>Email:</strong> <%= post.email %></p>
-                            <p class="card-text"><strong>About:</strong> <%= post.phone %> (Change this with your actual content)</p>
+                            <h5 class="card-title"><%= users.name %></h5>
+                            <p class="card-text"><strong>Email:</strong> <%= users.email %></p>
+                            <p class="card-text"><strong>About:</strong> <%= users.phone %> (Change this with your actual content)</p>
+                            <a class="btn btn-primary" href="/" >Back</a>
                         </div>
                     </div>
                 </div>

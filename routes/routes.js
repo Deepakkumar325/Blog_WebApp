@@ -20,7 +20,7 @@ const upload = multer({
 }).single("image");
 
 
-router.get('/add', (req, res) => {
+router.get('/add',  (req, res) => {
 
    res.render('adduser', { title: 'adduser' });
 })
@@ -45,11 +45,11 @@ router.get('/edit/:id', async (req, res) => {
 })
 
 
-router.get('/post/:id', async (req, res) => {
+router.get('/view/:id', async (req, res) => {
        const postId = req.params.id;
-       const post = await model.findById(postId);
+       const users = await model.findById(postId);
        
-       res.render('viewpost', { post });
+       res.render('viewpost', { users });
       
 });
 

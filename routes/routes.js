@@ -27,11 +27,15 @@ router.get('/add', (req, res) => {
 
 
 
-// Get all user route find all data
 router.get('/', async (req, res) => {
-   const users = await model.find({});
-   res.render("index", { title: "Home Page", users });
-})
+   try {
+      const users = await model.find({});
+      res.render("index", { title: "Home Page", users });
+   } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+   }
+});
 
 // edit database
 router.get('/edit/:id', async (req, res) => {
@@ -42,18 +46,11 @@ router.get('/edit/:id', async (req, res) => {
 
 
 router.get('/post/:id', async (req, res) => {
-   try {
        const postId = req.params.id;
        const post = await model.findById(postId);
-       if (!post) {
-           return res.status(404).render('error', { message: 'Post not found' });
-       }
-
+       
        res.render('viewpost', { post });
-   } catch (error) {
-       console.error(error);
-       res.status(500).render('error', { message: 'Internal Server Error' });
-   }
+      
 });
 
 router.get('/contact',(req,res)=>{

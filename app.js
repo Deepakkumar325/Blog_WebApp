@@ -10,12 +10,12 @@ const methodOverride = require('method-override');
 
 
 // mongodb connection
-mongoose.connect(process.env.DB_URL,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true})
-.then(()=>console.log("DB connect "))
-.catch(()=>{console.log("Failed to connect")})
-   
+mongoose.connect(process.env.DB_URL , {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  
+}).then(()=> console.log("DB Connected")).catch(( )=> console.log("Not Connected"));
+
 
 // file views set
 const views = path.join(__dirname,'views');
@@ -23,7 +23,6 @@ app.set("views",views);
 app.set('view engine','ejs');
 app.use(express.static('public'))
 app.set('view engine', 'ejs');
-app.set('views', '/opt/render/project/src/views');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 // /middleware
@@ -31,7 +30,7 @@ app.use(express.static('uploads'))
 app.use(methodOverride('_method'))
 
 app.get('/about',(req,res)=>{
-    res.render('about')
+    res.render('about') 
 })
 
 // body-parser , middleware 
@@ -52,4 +51,4 @@ app.listen(port,()=>{
     console.log(`Server listen at port ${port}`);
 }) 
  
-     
+      
